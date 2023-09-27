@@ -1,4 +1,4 @@
-import 'package:cinemaapp/presentation/screens/screen.dart';
+import 'package:cineapp/presentation/screens/screen.dart';
 import 'package:go_router/go_router.dart';
 
 

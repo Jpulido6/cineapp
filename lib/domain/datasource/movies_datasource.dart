@@ -1,4 +1,4 @@
-import 'package:cinemaapp/domain/entities/movies.dart';
+import 'package:cineapp/domain/entities/movies.dart';
 
 
 
