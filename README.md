@@ -1,4 +1,4 @@
-# Cinemaapp
+# Cineapp
 
 A new Flutter project.
 
