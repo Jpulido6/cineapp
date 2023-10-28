@@ -1,8 +1,11 @@
 import 'package:cineapp/config/constants/environment.dart';
 import 'package:cineapp/domain/datasource/movies_datasource.dart';
 import 'package:cineapp/domain/entities/movies.dart';
+import 'package:cineapp/domain/entities/video.dart';
 import 'package:cineapp/infrastructure/mappers/movie_mappers.dart';
+import 'package:cineapp/infrastructure/mappers/video_mappers.dart';
 import 'package:cineapp/infrastructure/models/moviedb/movie_details.dart';
+import 'package:cineapp/infrastructure/models/moviedb/movie_video.dart';
 
 import 'package:cineapp/infrastructure/models/moviedb/moviedb_response.dart';
 import 'package:dio/dio.dart';
@@ -50,6 +53,30 @@ class MoviedbDatasource extends MoviesDatasource {
         queryParameters: {'page': page, 'with_genres': 27});
     return _jsonToMovie(response.data);
   }
+  Future<List<Movie>> getAnimation({int page = 1}) async {
+    
+    final response = await dio.get('/discover/movie',
+        queryParameters: {'page': page, 'with_genres': 16});
+    return _jsonToMovie(response.data);
+  }
+  Future<List<Movie>> getAction({int page = 1}) async {
+    
+    final response = await dio.get('/discover/movie',
+        queryParameters: {'page': page, 'with_genres': 28});
+    return _jsonToMovie(response.data);
+  }
+  Future<List<Movie>> getComedy({int page = 1}) async {
+    
+    final response = await dio.get('/discover/movie',
+        queryParameters: {'page': page, 'with_genres': 35});
+    return _jsonToMovie(response.data);
+  }
+  Future<List<Movie>> getWestern({int page = 1}) async {
+    
+    final response = await dio.get('/discover/movie',
+        queryParameters: {'page': page, 'with_genres': 37});
+    return _jsonToMovie(response.data);
+  }
 
   Future<List<Movie>> getUpcoming({int page = 1}) async {
     
@@ -83,5 +110,25 @@ class MoviedbDatasource extends MoviesDatasource {
       'query': query,
     });
    return _jsonToMovie(response.data);
+  }
+
+  @override
+
+  Future<List<Video>> getYoutubeVideosById( int movieId) async{
+    final response = await dio.get('/movie/$movieId/videos');
+
+    final movieResponse = MoviedbVideosResponse.fromJson(response.data);
+
+    final videos = <Video>[];
+
+    for (final moviedbVideo in movieResponse.results) {
+      if ( moviedbVideo.site == 'YouTube') {
+          final video = VideoMapper.moviedbVideoToEntity(moviedbVideo);
+
+        videos.add(video);
+      }
+      
+    } 
+    return videos;
   }
 }

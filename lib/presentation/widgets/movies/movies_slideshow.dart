@@ -63,7 +63,7 @@ class _SliderView extends StatelessWidget {
                 return const DecoratedBox(decoration: BoxDecoration(color: Colors.black12));
               }
               return GestureDetector(
-                onTap: () => context.push('/movie/${movie.id}'),
+                onTap: () => context.push('/home/0/movie/${movie.id}'),
                 child: child
               );
             },

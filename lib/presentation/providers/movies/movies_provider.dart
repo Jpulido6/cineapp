@@ -17,6 +17,24 @@ final terrorMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>(
   final movieCallback = ref.watch(movieRepositoryProvider).getTerror; 
   return MoviesNotifier(moviesCallback: movieCallback);
 });
+final animationMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final movieCallback = ref.watch(movieRepositoryProvider).getAnimation; 
+  return MoviesNotifier(moviesCallback: movieCallback);
+});
+final actionMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final movieCallback = ref.watch(movieRepositoryProvider).getAction; 
+  return MoviesNotifier(moviesCallback: movieCallback);
+});
+final westernMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final movieCallback = ref.watch(movieRepositoryProvider).getWestern; 
+  return MoviesNotifier(moviesCallback: movieCallback);
+});
+final comedyMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final movieCallback = ref.watch(movieRepositoryProvider).getComedy; 
+  return MoviesNotifier(moviesCallback: movieCallback);
+});
+
+
 final upcomingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
   final movieCallback = ref.watch(movieRepositoryProvider).getUpcoming; 
   return MoviesNotifier(moviesCallback: movieCallback);

@@ -1,7 +1,7 @@
 import 'package:cineapp/presentation/providers/provider.dart';
 import 'package:cineapp/presentation/widgets/widgets.dart';
 
-import'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeView extends ConsumerStatefulWidget {
@@ -23,7 +23,6 @@ class HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-
     final initialLoading = ref.watch(initialLoadingProvider);
 
     if (initialLoading) {
@@ -32,8 +31,7 @@ class HomeViewState extends ConsumerState<HomeView> {
     final movies = ref.watch(nowPlayingMoviesProvider);
     final slidesMovies = ref.watch(moviesSlideshowProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
-    final terrorMovies = ref.watch(terrorMoviesProvider);
-    final upcomingMovies = ref.watch(upcomingMoviesProvider);
+    
 
     if (slidesMovies.isEmpty) {
       return const Center(
@@ -41,14 +39,10 @@ class HomeViewState extends ConsumerState<HomeView> {
       );
     }
 
-    
-
-    return CustomScrollView(
-
-      slivers: [
+    return CustomScrollView(slivers: [
       const SliverAppBar(
         floating: true,
-        flexibleSpace:Flexible(child: CustomAppBar()), 
+        flexibleSpace: Flexible(child: CustomAppBar()),
       ),
       SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
@@ -56,8 +50,7 @@ class HomeViewState extends ConsumerState<HomeView> {
             MoviesSlideshow(movies: slidesMovies),
             MovieHorizontalListview(
                 movies: movies,
-                tittle: 'En Cine',
-                
+                tittle: 'Mas Recientes',
                 loadNextPage: () =>
                     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage()),
             MovieHorizontalListview(
@@ -66,19 +59,7 @@ class HomeViewState extends ConsumerState<HomeView> {
                 // subTittle: 'Martes 3',
                 loadNextPage: () =>
                     ref.read(popularMoviesProvider.notifier).loadNextPage()),
-            MovieHorizontalListview(
-                movies: terrorMovies,
-                tittle: 'Terror',
-                subTittle: 'Martes 3',
-                loadNextPage: () =>
-                    ref.read(terrorMoviesProvider.notifier).loadNextPage()),
-            MovieHorizontalListview(
-                movies: upcomingMovies,
-                tittle: 'Próximamente',
-                subTittle: 'Martes 3',
-                loadNextPage: () =>
-                    ref.read(upcomingMoviesProvider.notifier).loadNextPage()),
-
+          
           ]);
         }, childCount: 1),
       )

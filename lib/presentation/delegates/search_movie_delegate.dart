@@ -70,9 +70,9 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
         builder: (context, snapshot) {
           if (snapshot.data ?? false) {
             return SpinPerfect(
-                animate: true,
-                spins: 10,
-                child: const Icon(Icons.search_rounded));
+                infinite: true,
+                spins: 3,
+                child: const Icon(Icons.refresh));
           }
           return IconButton(
             onPressed: () => query = '',
