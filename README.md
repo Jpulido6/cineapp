@@ -44,11 +44,7 @@ Esta es una aplicación móvil desarrollada en Flutter que te permite explorar p
 ## Créditos
 Esta aplicación utiliza datos de The Movie Database (TMDb). Agradecemos su servicio y la información proporcionada.
 
-## Contacto
-Para cualquier duda, sugerencia o problema relacionado con la app, no dudes en contactar con el desarrollador:
 
-Nombre: Carlos Jose Pulido 
-Email: cjpulido6@gmail.com
 
 # Dev
 Cambiar las variables de entorno en https://www.themoviedb.org/
