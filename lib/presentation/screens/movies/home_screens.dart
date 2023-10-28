@@ -1,21 +1,29 @@
-import 'package:cineapp/config/constants/environment.dart';
+import 'package:cineapp/presentation/views/views.dart';
+import 'package:cineapp/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-
 class HomeScreen extends StatelessWidget {
+  static const name = 'home-screen';
+  final int page;
 
-  static const name = 'HomeScreen';
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.page});
+
+  final viewRoutes = const <Widget>[
+    HomeView(),
+    CategoriesView(),
+    FavoriteView(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cine App'),
+      body: IndexedStack(
+        index: page,
+        children: viewRoutes,
       ),
-      body: Center(
-        child: Text(Environment.apiKey),
-      )
+      bottomNavigationBar: CustomBottomNavigation(
+        currentIndex: page,
+      ),
     );
   }
 }
